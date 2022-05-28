@@ -12,5 +12,7 @@ public:
             if(nums.at(idx) != idx)
                 return idx;
         }
+
+        return 0;
     }
 };
