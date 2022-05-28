@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
     char findTheDifference(string s, string t) {
         int len = s.size();
@@ -14,5 +14,17 @@ public:
         }
 
         return t.at(t.size() - 1);
+    }
+};
+
+class Solution2 {
+public:
+    char findTheDifference(string s, string t) {
+        int len = s.size();
+        for (int idx = 0; idx < len; ++idx) {
+            t[idx+1] += t[idx] - s[idx];
+        }
+
+        return t[len];
     }
 };
