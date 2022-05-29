@@ -7,7 +7,7 @@ class Solution
     int romanToInt(string s)
     {
         // const char* SYMBOLS = "MDCLXVI";
-        const char *SYMBOLS = "IVXLCDM";
+        const char *SYMBOLS = "VXLCDM";
         const char *pivot = SYMBOLS;
         int len = s.size();
         int tmp = 0;
@@ -19,22 +19,21 @@ class Solution
             switch (s[idx])
             {
             case 'M':
-                pivot+=6;
-                break;
-            case 'D':
                 pivot+=5;
                 break;
-            case 'C':
+            case 'D':
                 pivot+=4;
                 break;
-            case 'L':
+            case 'C':
                 pivot+=3;
                 break;
-            case 'X':
+            case 'L':
                 pivot+=2;
                 break;
-            case 'V':
+            case 'X':
                 pivot+=1;
+                break;
+            case 'V':
                 break;
             default:
                 idx--;
