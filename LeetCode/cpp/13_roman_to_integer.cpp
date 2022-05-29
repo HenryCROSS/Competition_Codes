@@ -1,54 +1,89 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
-    public:
-        int romanToInt(string s) {
-            // const char* SYMBOLS = "MDCLXVI";
-            const char* SYMBOLS = "IVXLCDM";
-            const char* pivot = SYMBOLS;
-            int len = s.size();
-            int tmp = 0;
-            int ans = 0;
+class Solution
+{
+  public:
+    int romanToInt(string s)
+    {
+        // const char* SYMBOLS = "MDCLXVI";
+        const char *SYMBOLS = "IVXLCDM";
+        const char *pivot = SYMBOLS;
+        int len = s.size();
+        int tmp = 0;
+        int ans = 0;
+        int idx = len - 1;
 
+        while (*pivot && *pivot != s[idx])
+        {
+            switch (s[idx])
+            {
+            case 'M':
+                pivot+=6;
+                break;
+            case 'D':
+                pivot+=5;
+                break;
+            case 'C':
+                pivot+=4;
+                break;
+            case 'L':
+                pivot+=3;
+                break;
+            case 'X':
+                pivot+=2;
+                break;
+            case 'V':
+                pivot+=1;
+                break;
+            default:
+                idx--;
+                break;
+            }
+        }
 
-            for (int idx = len - 1; idx >= 0; --idx) {
-                if(*pivot == 'I' && s[idx] == 'I')
-                    ++ans;
-                else
-                {
-                    if(*pivot == s[idx])
-                    {
-                        tmp *= -1;
-                        ++pivot;
-                    }
+        ans += len - idx;
 
-                    switch (s[idx]) {
-                        case 'M':
-                            tmp += 1000;
-                        case 'D':
-                            tmp += 500;
-                        case 'C':
-                            tmp += 100;
-                        case 'L':
-                            tmp += 50;
-                        case 'X':
-                            tmp += 10;
-                        case 'V':
-                            tmp += 5;
-                        case 'I':
-                            tmp += 1;
-                    }
-
-                    if(*pivot == s[idx])
-                    {
-                        ans += tmp;
-                        tmp = 0;
-                    }
-                }
-
+        for (idx = len - 1; idx >= 0; --idx)
+        {
+            if (*pivot == s[idx])
+            {
+                tmp *= -1;
+                ++pivot;
             }
 
-            return ans;
+            switch (s[idx])
+            {
+            case 'M':
+                tmp += 1000;
+                break;
+            case 'D':
+                tmp += 500;
+                break;
+            case 'C':
+                tmp += 100;
+                break;
+            case 'L':
+                tmp += 50;
+                break;
+            case 'X':
+                tmp += 10;
+                break;
+            case 'V':
+                tmp += 5;
+                break;
+            case 'I':
+                tmp += 1;
+                break;
+            }
+
+            if (*pivot == s[idx])
+            {
+                ans += tmp;
+                tmp = 0;
+            }
         }
+
+        return ans;
+    }
 };
